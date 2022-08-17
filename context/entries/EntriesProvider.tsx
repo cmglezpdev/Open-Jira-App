@@ -36,11 +36,11 @@ export const EntriesProvider: FC<{ children: ReactNode}> = ({ children }) => {
    
     const [state, dispatch] = useReducer(entriesReducer, initialState);
 
-    const addNewEntry = ( description: string, type:EntryStatus ) => {
+    const addNewEntry = ( description: string ) => {
         const newEntry: Entry = {
             _id: uuid(),
             description,
-            status: type,
+            status: 'pending',
             createAt: Date.now(),   
         }
 

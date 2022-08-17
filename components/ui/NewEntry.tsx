@@ -1,21 +1,17 @@
 import { Box, Button, TextField } from "@mui/material"
 import SaveIcon from '@mui/icons-material/Save';
-import { AddCircleOutlineOutlined } from "@mui/icons-material";
+import { AddCircleOutlineOutlined, SupervisedUserCircleTwoTone } from "@mui/icons-material";
 import { ChangeEvent, useState, useContext, FC } from 'react';
 import { EntriesContext } from '../../context/entries/EntriesContext';
 import { EntryStatus } from "../../interfaces";
+import { UIContext } from '../../context/ui/UIContext';
 
 
-interface Props {
-    type: EntryStatus;
-}
-
-
-export const NewEntry:FC<Props> = ({ type }) => {
+export const NewEntry = () => {
 
     const { addNewEntry } = useContext(EntriesContext);
+    const { isAddingEntry:isAdding, setIsAddingEntry:setIsAdding } = useContext(UIContext);
 
-    const [isAdding, setIsAdding] = useState(false);
     const [touched, setTouched] = useState(false);
     const [inputValue, setInputValue] = useState('');
 
@@ -26,7 +22,7 @@ export const NewEntry:FC<Props> = ({ type }) => {
     const onSave = () => {
         if( inputValue.length === 0 ) return;
 
-        addNewEntry( inputValue, type );
+        addNewEntry( inputValue );
         
         setTouched(false);
         setInputValue('');

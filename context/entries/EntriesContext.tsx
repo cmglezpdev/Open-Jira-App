@@ -1,11 +1,11 @@
 import { createContext } from "react";
-import { Entry, EntryStatus } from "../../interfaces";
+import { Entry } from "../../interfaces";
 
 interface ContextProps {
     entries: Entry[];
 
     // Methods
-    addNewEntry: (description:string, type:EntryStatus) => void;
+    addNewEntry: (description:string) => void;
 }
 
 export const EntriesContext = createContext<ContextProps>({} as ContextProps);
