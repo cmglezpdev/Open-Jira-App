@@ -42,7 +42,6 @@ export const EntryList:FC<Props> = ({ status }) => {
 
 
     return (
-        // TODO: TO DO DROP
         <div
             onDrop={onDropEntry}
             onDragOver={allowDrog}
@@ -59,8 +58,6 @@ export const EntryList:FC<Props> = ({ status }) => {
                             />
                         ))
                     }
-
-
                 </List>
             </Paper>
         </div>    
