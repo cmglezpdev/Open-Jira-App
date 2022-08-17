@@ -2,14 +2,14 @@ import { FC, ReactNode, useReducer } from "react";
 import { v4 as uuid } from 'uuid';
 
 import { entriesReducer, EntriesContext } from "./";
-import { Entry } from '../../interfaces';
+import { Entry, EntryStatus } from '../../interfaces';
 
 
 export interface EntriesState {
     entries: Entry[];
 }
 
-const initialState: EntriesState = {
+const initialState:EntriesState = {
     entries: [
         {
             _id: uuid(),
@@ -36,9 +36,26 @@ export const EntriesProvider: FC<{ children: ReactNode}> = ({ children }) => {
    
     const [state, dispatch] = useReducer(entriesReducer, initialState);
 
+    const addNewEntry = ( description: string, type:EntryStatus ) => {
+        const newEntry: Entry = {
+            _id: uuid(),
+            description,
+            status: type,
+            createAt: Date.now(),   
+        }
+
+        dispatch({
+            type: '[Entry] AddEntry',
+            payload: newEntry
+        });
+    }
+
     return (
         <EntriesContext.Provider value={{
-            ...state
+            ...state,
+
+            // Methods
+            addNewEntry
         }}>
             {children}
         </EntriesContext.Provider>

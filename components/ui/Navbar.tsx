@@ -6,7 +6,7 @@ import { UIContext } from '../../context/ui';
 
 export const Navbar = () => {
 
-    const { openSideMenu } = useContext(UIContext)
+    const { openSideMenu } = useContext(UIContext);
 
     return (
         <AppBar position='sticky'>

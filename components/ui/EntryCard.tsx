@@ -11,7 +11,7 @@ export const EntryCard:FC<Props> = ({ entry }) => {
 
     return (
         <Card
-            sx={{marginBotton: 1}}
+            sx={{marginBottom: 1}}
             // Eventos de drag
         >
             <CardActionArea>
