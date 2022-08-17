@@ -13,7 +13,7 @@ const Home: NextPage = () => {
             <CardHeader title={"Pennding"} />
             <CardContent>
               {/* Add new task */}
-              <EntryList />
+              <EntryList status='pending' />
             </CardContent>
           </Card>
         </Grid>
@@ -22,7 +22,7 @@ const Home: NextPage = () => {
             <CardHeader title={"In Progress"}></CardHeader>
             <CardContent>
               {/* Add new task */}
-              <EntryList />
+              <EntryList status='in-progress' />
             </CardContent>
           </Card>
         </Grid>
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
             <CardHeader title={"Finished"}></CardHeader>
             <CardContent>
               {/* Add new task */}
-              <EntryList />
+              <EntryList status='finished' />
             </CardContent>
           </Card>
         </Grid>
