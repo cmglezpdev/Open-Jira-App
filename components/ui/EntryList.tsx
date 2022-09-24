@@ -22,8 +22,6 @@ export const EntryList:FC<Props> = ({ status }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     , [entries]);
     
-    console.log(isDraggingEntry);
-
     const onDropEntry = (event: DragEvent<HTMLDivElement>) => {
         const id = event.dataTransfer.getData('text');
         const entry = entries.find(entry => entry._id === id)!;
