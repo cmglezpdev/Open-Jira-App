@@ -10,26 +10,7 @@ export interface EntriesState {
 }
 
 const initialState:EntriesState = {
-    entries: [
-        {
-            _id: uuid(),
-            description: 'Pennnding: Esta es la description de la primera entrada',
-            status: 'pending',
-            createAt: Date.now(),
-        },
-        {
-            _id: uuid(),
-            description: 'InProgress: Esta es la description de la segunda entrada',
-            status: 'in-progress',
-            createAt: Date.now() - 223634,
-        },
-        {
-            _id: uuid(),
-            description: 'Finished: Esta es la description de la tercera entrada',
-            status: 'finished',
-            createAt: Date.now() - 2025246,
-        },
-    ],
+    entries: [],
 }
 
 export const EntriesProvider: FC<{ children: ReactNode}> = ({ children }) => {
