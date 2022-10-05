@@ -27,3 +27,9 @@ Renombrar el archivo __.env.template__ a __.env__
 
 __DB_CNN__: Cadena de conexion con mongodb
 
+## LLenar la base de datos con información de pruebas
+
+Llamar al endpoint:
+```
+GET http://localhost:3000/api/seed
+```
