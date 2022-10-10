@@ -49,6 +49,5 @@ const postEntries = async ( req:NextApiRequest, res:NextApiResponse<Data> ) => {
         console.log(error);
 
         return res.status(400).json({message: "Something is wrong"})
-    }
-    
+    }   
 }
