@@ -8,17 +8,14 @@ const entrySchema = new Schema({
         type: String,
         require: true
     },
-    createAt: {
-        type: Number,
-        require: true
-    },
+    createAt: { type: Number },
     status: {
         type: String,
         enum: {
             values: ['pending', 'in-progress', 'finished'],
             message: '{VALUE} no es un estado permitido'
         },
-        require: true
+        default: 'pending'
     }
 });
 
