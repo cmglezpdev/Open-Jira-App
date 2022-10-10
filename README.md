@@ -1,10 +1,19 @@
 # Next.js OpenJira App
 
-Correr localmente en desarrollo
+Correr localmente, se necesita la base de datos
 
-```bash
-yarn dev
 ```
+docker-compose up -d
+```
+
+* El -d, significa __detached__
+
+* MongoDB url local
+
+```
+mongodb://localhost:27017/entriesdb
+```
+
 
 Para generar el build de producción
 

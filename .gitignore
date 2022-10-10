@@ -6,6 +6,9 @@
 .pnp.js
 .env
 
+#docker
+mongo/
+
 # testing
 /coverage
 
