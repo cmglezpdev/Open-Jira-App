@@ -15,6 +15,8 @@ export default function handler (req:NextApiRequest, res:NextApiResponse) {
         return res.status(400).json({nessage: "The id is not valid!"})
 
     switch( req.method ) {
+        case 'GET':
+            return getEntry( req, res );
         case 'PUT':
             return putEntry(req, res);
         default:
@@ -22,6 +24,18 @@ export default function handler (req:NextApiRequest, res:NextApiResponse) {
     }
 }
 
+const getEntry = async (req:NextApiRequest, res:NextApiResponse) => {
+    const { id } = req.query;
+
+    await db.connect();
+    const entry = Entry.findById(id);
+    if( !entry ) {
+        await db.disconnect();
+        return res.status(400).json({ message: 'The entry does not exist' });
+    }
+    await db.disconnect();
+    return res.status(200).json( entry );
+}
 
 const putEntry = async (req:NextApiRequest, res:NextApiResponse) => {
     const { id } = req.query;
@@ -52,5 +66,4 @@ const putEntry = async (req:NextApiRequest, res:NextApiResponse) => {
         await db.disconnect();
         res.status(400).json({ message: error.errors.status.message })  
     }
-
 }
