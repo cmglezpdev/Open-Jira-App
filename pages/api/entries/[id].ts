@@ -28,7 +28,7 @@ const getEntry = async (req:NextApiRequest, res:NextApiResponse) => {
     const { id } = req.query;
 
     await db.connect();
-    const entry = Entry.findById(id);
+    const entry = await Entry.findById(id);
     if( !entry ) {
         await db.disconnect();
         return res.status(400).json({ message: 'The entry does not exist' });
