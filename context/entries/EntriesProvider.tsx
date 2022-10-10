@@ -17,18 +17,9 @@ export const EntriesProvider: FC<{ children: ReactNode}> = ({ children }) => {
    
     const [state, dispatch] = useReducer(entriesReducer, initialState);
 
-    const addNewEntry = ( description: string ) => {
-        const newEntry: Entry = {
-            _id: uuid(),
-            description,
-            status: 'pending',
-            createAt: Date.now(),   
-        }
-
-        dispatch({
-            type: '[Entry] AddEntry',
-            payload: newEntry
-        });
+    const addNewEntry = async ( description: string ) => {
+        const { data } = await entriesApi.post<Entry>('/entries', { description })
+        dispatch({ type: '[Entry] AddEntry', payload: data });
     }
 
     const updateEntry = ( entry: Entry ) => {
