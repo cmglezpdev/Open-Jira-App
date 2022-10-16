@@ -1,12 +1,24 @@
-# Next.js OpenJira App
+# Next.js OpenJira App ✍
 
-Correr localmente, se necesita la base de datos
+## Qué puedes hacer en Open Jira?
+
+Open Jira es una pequeña aplicación construida con __Next Js__ y __NextUI__ la cual nos permite manejar nuestras tareas diarias 
+
+En la aplicación podrás:
+- Crear tareas y agruparlas en tres columnas (_Pendientes_, _En Progreso_ y _Completados_) con el objetivo de llevar un control de tu progreso
+- Editar las tareas ya creadas
+- Eliminar las tareas
+- Mover una tarea entre las columnas
+
+# Ver la aplicación
+
+La aplicación en producción se puede ver aquí
+
+Para correrla localmente, se necesita correr nuestra imagen de MongoDB en docker
 
 ```
 docker-compose up -d
 ```
-
-* El -d, significa __detached__
 
 * MongoDB url local
 
@@ -26,7 +38,6 @@ Correr la version de producción
 ```bash
 yarn start
 ```
-
 
 ## Configurar las varaibles de entorno
 
