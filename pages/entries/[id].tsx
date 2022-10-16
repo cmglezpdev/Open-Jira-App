@@ -1,17 +1,28 @@
-import { useState, ChangeEvent, useMemo } from 'react';
+import { useState, ChangeEvent, useMemo, FC, useContext } from 'react';
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { capitalize, Card, Grid, CardHeader, CardContent, TextField, CardActions, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, IconButton } from '@mui/material';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 import { Layout } from '../../components/layouts/Layout';
-import { EntryStatus } from '../../interfaces';
+import { dbEntries } from '../../database';
+import { Entry, EntryStatus } from '../../interfaces';
+import { EntriesContext } from '../../context/entries';
 
 const validStatus:EntryStatus[] = ['pending', 'in-progress', 'finished']
 
-const EntryPage = () => {
+interface Props {
+    entry: Entry
+}
+
+
+const EntryPage:FC<Props> = ({ entry }) => {
     
-    const [inputValue, setInputValue] = useState('');
-    const [status, setStatus] = useState<EntryStatus>('pending');
+    const router = useRouter();
+    const { updateEntry } = useContext(EntriesContext)
+    const [inputValue, setInputValue] = useState(entry.description);
+    const [status, setStatus] = useState<EntryStatus>(entry.status);
     const [touched, setTouched] = useState(false);
 
     const isNotValid = useMemo(() => inputValue.length <= 0 && touched, [inputValue, touched])
@@ -25,11 +36,19 @@ const EntryPage = () => {
     }
 
     const onSave = () => {
+        if( inputValue.trim().length === 0 ) return;
+        const updatedEntry:Entry = {
+            ...entry,
+            status,
+            description: inputValue,
+        }
 
+        updateEntry(updatedEntry, true)
+        router.push('/')
     }
 
     return (
-        <Layout title='... ... ...'>
+        <Layout title={inputValue.substring(0, 20).concat('...')}>
             <Grid
                 container
                 justifyContent='center'
@@ -104,6 +123,29 @@ const EntryPage = () => {
             </IconButton>
         </Layout>
     )
+}
+
+
+export const getServerSideProps: GetServerSideProps = async({ params }) => {
+
+    const { id } = params as { id: string }
+    
+    const entry = await dbEntries.getEntryById( id );
+
+    if( !entry ) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false
+            }
+        }
+    }
+
+    return {
+        props: {
+            entry
+        }
+    }
 }
 
 
