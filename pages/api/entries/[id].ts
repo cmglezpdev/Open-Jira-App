@@ -52,7 +52,7 @@ const putEntry = async (req:NextApiRequest, res:NextApiResponse) => {
     try {
         const updateEntry = await Entry.findByIdAndUpdate(
             id, 
-            { description, status }, 
+            { description, status, createAt: Date.now() }, 
             { runValidators: true, new: true }    
         )
         await db.disconnect();
