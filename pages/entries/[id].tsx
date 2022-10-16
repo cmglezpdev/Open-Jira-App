@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, useMemo, FC, useContext } from 'react';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { capitalize, Card, Grid, CardHeader, CardContent, TextField, CardActions, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, IconButton } from '@mui/material';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -19,7 +20,8 @@ interface Props {
 
 const EntryPage:FC<Props> = ({ entry }) => {
     
-    const { updateEntry } = useContext(EntriesContext)
+    const { updateEntry, deleteEntry } = useContext(EntriesContext)
+    const router = useRouter()
     const [inputValue, setInputValue] = useState(entry.description);
     const [status, setStatus] = useState<EntryStatus>(entry.status);
     const [touched, setTouched] = useState(false);
@@ -43,6 +45,11 @@ const EntryPage:FC<Props> = ({ entry }) => {
         }
 
         updateEntry(updatedEntry, true)
+    }
+
+    const onDeleteEntry = () => {
+        deleteEntry(entry._id);
+        router.replace('/');
     }
 
     return (
@@ -111,12 +118,15 @@ const EntryPage:FC<Props> = ({ entry }) => {
                 </Grid>
             </Grid>
             
-            <IconButton sx={{
-                position: 'fixed',
-                bottom: 30,
-                right: 30,
-                backgroundColor: 'red'
-            }}>
+            <IconButton 
+                sx={{
+                    position: 'fixed',
+                    bottom: 30,
+                    right: 30,
+                    backgroundColor: 'red'
+                }}
+                onClick={onDeleteEntry}
+            >
                 <DeleteOutlinedIcon />
             </IconButton>
         </Layout>
