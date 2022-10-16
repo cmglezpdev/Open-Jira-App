@@ -1,5 +1,4 @@
 import { FC, ReactNode, useEffect, useReducer } from "react";
-import { v4 as uuid } from 'uuid';
 
 import { entriesReducer, EntriesContext } from "./";
 import { Entry } from '../../interfaces';
