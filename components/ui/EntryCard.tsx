@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { DragEvent, FC, useContext } from "react";
 import { UIContext } from "../../context/ui";
 import { Entry } from "../../interfaces"
+import { dateFunctions } from "../../utils";
 
 interface Props {
     entry: Entry;
@@ -26,7 +27,7 @@ export const EntryCard:FC<Props> = ({ entry }) => {
     const onClick = () => {
         router.push(`/entries/${entry._id}`)
     }
-
+ 
     return (
         <Card
             onClick={onClick}
@@ -41,7 +42,9 @@ export const EntryCard:FC<Props> = ({ entry }) => {
                     <Typography sx={{whiteSpace: 'pre-line'}}>{ entry.description }</Typography>
                 </CardContent>
                 <CardActions sx={{display: 'flex', justifyContent: 'right', paddingRight: '20px'}}>
-                    <Typography variant='body2'>Hace 30 minutos</Typography>
+                    <Typography variant='body2'>
+                        { dateFunctions.getFormatDistanteToNow(entry.createAt) }
+                    </Typography>
                 </CardActions>
             </CardActionArea>
         </Card>
