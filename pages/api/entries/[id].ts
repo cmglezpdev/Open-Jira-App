@@ -8,12 +8,8 @@ type Data =
     | IEntry
 
 
-export default function handler (req:NextApiRequest, res:NextApiResponse) {
-    const { id } = req.query;
-
-    if( !mongoose.isValidObjectId(id) )
-        return res.status(400).json({nessage: "The id is not valid!"})
-
+export default function handler (req:NextApiRequest, res:NextApiResponse<Data>) {
+    
     switch( req.method ) {
         case 'GET':
             return getEntry( req, res );
