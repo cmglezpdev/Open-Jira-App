@@ -1,6 +1,5 @@
 import { useState, ChangeEvent, useMemo, FC, useContext } from 'react';
 import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
 import { capitalize, Card, Grid, CardHeader, CardContent, TextField, CardActions, Button, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, IconButton } from '@mui/material';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -20,7 +19,6 @@ interface Props {
 
 const EntryPage:FC<Props> = ({ entry }) => {
     
-    const router = useRouter();
     const { updateEntry } = useContext(EntriesContext)
     const [inputValue, setInputValue] = useState(entry.description);
     const [status, setStatus] = useState<EntryStatus>(entry.status);
@@ -45,7 +43,6 @@ const EntryPage:FC<Props> = ({ entry }) => {
         }
 
         updateEntry(updatedEntry, true)
-        router.push('/')
     }
 
     return (
@@ -58,18 +55,18 @@ const EntryPage:FC<Props> = ({ entry }) => {
                 <Grid item xs={12} sm={8} md={6}>
                     <Card>
                         <CardHeader
-                            title={`Input: ${inputValue}`}
-                            subheader={dateFunctions.getFormatDistanteToNow(entry.createAt)}
+                            title={`Input: ${inputValue.substring(0, 50).concat('...')}`}
+                            subheader={`created  ${dateFunctions.getFormatDistanteToNow(entry.createAt)} ago`}
                         />
 
                         <CardContent>
                             <TextField
                                 sx={{ marginTop: 2, marginBottom: 1 }}
                                 fullWidth
-                                placeholder='Nueva Entrada'
+                                placeholder='New Entry'
                                 autoFocus
                                 multiline
-                                label='Nueva entrada'
+                                label='New Entry'
                                 onChange={onTextFieldChange}
                                 value={inputValue}
                                 onBlur={() => setTouched(true)}
@@ -78,7 +75,7 @@ const EntryPage:FC<Props> = ({ entry }) => {
                              />
 
                             <FormControl>
-                                <FormLabel> Estado: </FormLabel>
+                                <FormLabel> Status: </FormLabel>
                                 <RadioGroup 
                                     row
                                     value={status}
