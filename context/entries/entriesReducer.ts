@@ -10,23 +10,27 @@ type EntriesActionType =
 
 
 export const entriesReducer = ( state: EntriesState, action:EntriesActionType ) => {
-
+    // in each action, the entries are sorted
     switch( action.type ) {
         case '[Entry] AddEntry':
             return {
                 ...state,
-                entries:[ ...state.entries, action.payload ]
+                entries:[ action.payload, ...state.entries ]
             }
+
         case '[Entry] Update Entry':
             return {
                 ...state,
-                entries: state.entries.map( entry => ( entry._id === action.payload._id ) ? action.payload : entry )
+                entries: [
+                    action.payload, 
+                    ...state.entries.filter(entry => entry._id !== action.payload._id)
+                ]
             }
         
         case '[Entry] Refresh Data':
             return {
                 ...state,
-                entries: [...action.payload]
+                entries: [...action.payload.sort((a, b) => b.createAt - a.createAt)]
             }
         default:
             return state;
