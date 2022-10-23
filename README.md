@@ -53,3 +53,8 @@ Llamar al endpoint:
 ```
 GET http://localhost:3000/api/seed
 ```
+
+
+# TASKS
+
+El Menu Lateral no tiene ninguna funcionalidad. Añadir alguna posteriormente
