@@ -57,4 +57,5 @@ GET http://localhost:3000/api/seed
 
 # TASKS
 
-El Menu Lateral no tiene ninguna funcionalidad. Añadir alguna posteriormente
+1. El Menu Lateral no tiene ninguna funcionalidad. Añadir alguna posteriormente
+2. Poder crear seciones de usuarios y crear grupos para realizar tareas colectivas
