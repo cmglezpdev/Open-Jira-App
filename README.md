@@ -1,61 +1,60 @@
 # Next.js OpenJira App ✍
 
-## Qué puedes hacer en Open Jira?
 
-Open Jira es una pequeña aplicación construida con __Next Js__ la cual nos permite manejar nuestras tareas diarias 
+### Screenshot
 
-En la aplicación podrás:
-- Crear tareas y agruparlas en tres columnas (_Pendientes_, _En Progreso_ y _Completados_) con el objetivo de llevar un control de tu progreso
-- Editar las tareas ya creadas
-- Eliminar las tareas
-- Mover una tarea entre las columnas
+![](./screenshot.png)
 
-# Ver la aplicación
 
-La aplicación en producción se puede ver aquí
+## What can you do with Open Jira?
 
-Para correrla localmente, se necesita correr nuestra imagen de MongoDB en docker
+Open Jira is a small application built with __Next.js__ that allow us to manage own daly tasks
+
+In the application you will be able to:
+- Build tasks and group them in three columns (_Pending_, _In Progress_ and _Complete_) with the target to have a control of your progress
+- Edit created task 
+- Delete tasks
+- Move a task between columns
+# See application
+
+The application in production can be seen [here]
+
+To run the app in development, you must run the __mongodb docker image__
 
 ```
 docker-compose up -d
 ```
 
-* MongoDB url local
+* url local of mongodb
 
 ```
 mongodb://localhost:27017/entriesdb
 ```
 
 
-Para generar el build de producción
+To generate the `build` of production
 
 ```bash
 yarn build
 ```
 
-Correr la version de producción
+To run the production version(`build`)
 
 ```bash
 yarn start
 ```
 
-## Configurar las varaibles de entorno
+## Environment variables
 
-Renombrar el archivo __.env.template__ a __.env__
+Rename the file __.env.template__ to __.env__
 
-### Datos de las variables
+### Data of the variables
 
-__DB_CNN__: Cadena de conexion con mongodb
+__DB_CNN__: String of conection with mongo
 
-## LLenar la base de datos con información de pruebas
+## Fill the database with test information
 
-Llamar al endpoint:
+Call the endpoint:
 ```
 GET http://localhost:3000/api/seed
 ```
-
-
-# TASKS
-
-1. El Menu Lateral no tiene ninguna funcionalidad. Añadir alguna posteriormente
-2. Poder crear seciones de usuarios y crear grupos para realizar tareas colectivas
