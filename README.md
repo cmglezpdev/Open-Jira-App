@@ -17,7 +17,7 @@ In the application you will be able to:
 - Move a task between columns
 # See application
 
-The application in production can be seen [here]
+The application in production can be seen [here](https://open-jira-nextapp.netlify.app/)
 
 To run the app in development, you must run the __mongodb docker image__
 
