@@ -8,13 +8,10 @@ export function middleware ( req: NextRequest, ev:NextFetchEvent ) {
 
     const checkMongoIDRegExp = new RegExp('^[0-9a-fA-F]{24}$');
 
-    if( !checkMongoIDRegExp.test(id) )
-        return new Response(JSON.stringify({ message: 'The id is not valid' + id }), {
-            status: 400,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+    if( !checkMongoIDRegExp.test(id) ) {
+        req.nextUrl.pathname = '/404';
+        return NextResponse.redirect( req.nextUrl );
+    }
 
     return NextResponse.next()
 }
